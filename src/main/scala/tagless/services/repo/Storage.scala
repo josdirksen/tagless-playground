@@ -34,8 +34,6 @@ object storage {
       F[_]: MonadCancel[*[_], Throwable]: Async: ConfigDSL: MongoDBConnectionDSL
   ]() extends TemperatureStorageDSL[F] {
 
-    val logger = LoggerFactory.getLogger("test")
-
     val temperatureCodecProvider = Macros.createCodecProvider[Temperature]()
     val codecRegistry = fromRegistries(fromProviders(temperatureCodecProvider), DEFAULT_CODEC_REGISTRY)
     val ME = MonadError[F, Throwable]
